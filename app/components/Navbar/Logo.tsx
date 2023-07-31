@@ -9,10 +9,11 @@ const Logo = () => {
   const route = useRouter();
   return (
     <Image
-      className='hidden md:block cursor-pointer'
-       src='/images/logotipo2.png'
+      className='hidden h-auto w-auto md:block cursor-pointer'
+      src='/images/logotipo2.png'
       width={150}
-      height={100}
+      height={150}
+      priority
       alt='Logo'
     />
   );
