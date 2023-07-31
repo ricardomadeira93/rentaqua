@@ -71,7 +71,7 @@ const RegisterModal = () => {
         required
       />
       <Input
-        id='Name'
+        id='name'
         label='Name'
         disabled={isLoading}
         register={register}
