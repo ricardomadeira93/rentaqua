@@ -4,11 +4,13 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 
 import Image from 'next/image';
+import { Router } from 'next/router';
 
 const Logo = () => {
-  const route = useRouter();
+  const router = useRouter();
   return (
     <Image
+      onClick={() => router.push('/')}
       className='hidden h-auto w-auto md:block cursor-pointer'
       src='/images/logotipo2.png'
       width={150}
