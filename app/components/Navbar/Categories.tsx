@@ -1,11 +1,19 @@
 import Container from '../Container';
 
+// Icons
 import {
   FaSwimmingPool,
   FaUmbrellaBeach,
 } from 'react-icons/fa';
+import { LiaPlusSquareSolid } from 'react-icons/lia';
 import { MdOutlineSportsMotorsports } from 'react-icons/md';
 import { TbWaterpolo } from 'react-icons/tb';
+import { AiOutlineFire } from 'react-icons/ai';
+import { GoSquare } from 'react-icons/go';
+import { PiSnowflakeLight } from 'react-icons/pi';
+import { MdShortText } from 'react-icons/md';
+// Icons end
+
 import CategoryBox from '../CategoryBox';
 import {
   usePathname,
@@ -20,26 +28,26 @@ export const categories = [
       'This pool has included amenities',
   },
   {
-    label: 'Pools',
-    icon: FaSwimmingPool,
+    label: 'Artic',
+    icon: PiSnowflakeLight,
     description:
       'This pool has included amenities',
   },
   {
-    label: 'Pools',
-    icon: FaSwimmingPool,
+    label: 'Desert',
+    icon: AiOutlineFire,
     description:
       'This pool has included amenities',
   },
   {
-    label: 'Pools',
-    icon: FaSwimmingPool,
+    label: 'Tiny',
+    icon: MdShortText,
     description:
       'This pool has included amenities',
   },
   {
-    label: 'Pools',
-    icon: FaSwimmingPool,
+    label: 'Large',
+    icon: LiaPlusSquareSolid,
     description:
       'This pool has included amenities',
   },
