@@ -18,14 +18,15 @@ import Input from '../Inputs/Input';
 import Button from '../Button';
 
 import { FcGoogle } from 'react-icons/fc';
-import { AiFillGithub } from 'react-icons/ai';
 
 import { toast } from 'react-hot-toast/headless';
 import { signIn } from 'next-auth/react';
-import Google from 'next-auth/providers/google';
+import loginModal from './LoginModal';
+import useLoginModal from '@/app/hooks/useLoginModal';
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
   const [isLoading, setIsLoading] =
     useState(false);
 
@@ -57,6 +58,11 @@ const RegisterModal = () => {
         setIsLoading(false);
       });
   };
+
+  const toggle = useCallback(() => {
+    registerModal.onClose();
+    loginModal.onOpen();
+  }, [loginModal, registerModal]);
 
   const bodyContent = (
     <div className='flex flex-col gap-4'>
@@ -101,12 +107,6 @@ const RegisterModal = () => {
         icon={FcGoogle}
         onClick={() => signIn('google')}
       />
-      <Button
-        outline
-        label='Continue with Github'
-        icon={AiFillGithub}
-        onClick={() => signIn('github')}
-      />
 
       <div className='text-neutral-500 text-center mt-4 font-light'>
         <div className='flex flex-row justify-center gap-2'>
@@ -114,7 +114,7 @@ const RegisterModal = () => {
             Already have an account?
           </div>
           <div
-            onClick={registerModal.onClose}
+            onClick={toggle}
             className='text-neutral-800 cursor-pointer hover:underline'
           >
             Log In
