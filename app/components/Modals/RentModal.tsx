@@ -11,6 +11,9 @@ import {
   FieldValues,
   useForm,
 } from 'react-hook-form';
+import CountrySelect from '../Inputs/CountrySelect';
+import Map from '../Map';
+import dynamic from 'next/dynamic';
 
 enum STEPS {
   CATEGORY = 0,
@@ -49,6 +52,16 @@ const RentModal = () => {
   });
 
   const category = watch('category');
+  const location = watch('location');
+
+  const Map = useMemo(
+    () =>
+      dynamic(() => import('../Map'), {
+        ssr: false,
+      }),
+    [location]
+  );
+
   const setCustomValue = (
     id: string,
     value: any
@@ -82,6 +95,7 @@ const RentModal = () => {
     return 'Back';
   }, [step]);
 
+  // Body Content
   let bodyContent = (
     <div className='flex flex-col gap-8 '>
       <Heading
@@ -111,13 +125,33 @@ const RentModal = () => {
     </div>
   );
 
+  if (step === STEPS.LOCATION) {
+    bodyContent = (
+      <div className='flex flex-col gap-8'>
+        <Heading
+          title='Where is your Splash Located?'
+          subtitle='Help guest find it!'
+        />
+        <CountrySelect
+          onChange={(value) =>
+            setCustomValue('location', value)
+          }
+          value={location}
+        />
+        <Map center={location?.latlng} />
+      </div>
+    );
+  }
+
+  // Continuar aqui
+
   return (
     <div>
       <Modal
         title='Rent your Splash!'
         isOpen={rentModal.isOpen}
         onClose={rentModal.onClose}
-        onSubmit={rentModal.onClose}
+        onSubmit={onNext}
         body={bodyContent}
         actionLabel={actionLabel}
         secondaryActionLabel={
